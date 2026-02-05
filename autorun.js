@@ -90,7 +90,7 @@ setTimeout(() => {
                 const hash = getHash(content);
 
                 if (!knownHashes.has(hash)) {
-                    knownHashes.add(hash);
+                    
 
                     // --- STEP A: ACTIVATE CELL ---
                     triggerClick(cell);
@@ -109,6 +109,10 @@ setTimeout(() => {
                         setTimeout(() => flash.remove(), 1000);
                     }, 100); 
                 }
+                knownHashes.clear();
+                notebookContainer.querySelectorAll('.jp-Cell').forEach(cell => {
+                    knownHashes.add(getHash(getCellContent(cell)));
+                });
             });
         }, 200); 
     });
