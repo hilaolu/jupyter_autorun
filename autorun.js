@@ -61,7 +61,7 @@ setTimeout(() => {
     const observer = new MutationObserver((mutations) => {
         const nodesAdded = mutations.some(m => m.addedNodes.length > 0);
 
-        if (nodesAdded) {
+        if (nodesAdded || true) {
             setTimeout(() => {
                 const currentCells = notebookContainer.querySelectorAll('.jp-Cell');
 
