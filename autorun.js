@@ -1,4 +1,3 @@
-%%javascript
 // Wait for DOM to attach
 setTimeout(() => {
     // 1. Resolve Scope
