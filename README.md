@@ -63,6 +63,25 @@ jupyter lab
 
 With the watch command running, every saved change will immediately be built locally and available in your running JupyterLab. Refresh JupyterLab to load the change in your browser (you may need to wait several seconds for the extension to be rebuilt).
 
+### Quick Start (Development Mode)
+
+If you just want to test the extension without installing it system-wide:
+
+```bash
+# 1. Build the extension
+jlpm build
+
+# 2. Symlink to JupyterLab's labextensions directory (only needed once)
+ln -s $(pwd)/jupyter_autorun/labextension ~/.local/share/jupyter/labextensions/jupyter_autorun
+
+# 3. Start JupyterLab
+jupyter lab
+```
+
+The extension will be loaded automatically. To verify it's active, check the Extensions panel in JupyterLab.
+
+**Tip:** For iterative development, use `jlpm watch` in one terminal and `jupyter lab` in another. Changes to TypeScript files will be rebuilt automatically.
+
 By default, the `jlpm build` command generates the source maps for this extension to make it easier to debug using the browser dev tools. To also generate source maps for the JupyterLab core extensions, you can run the following command:
 
 ```bash
