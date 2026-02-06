@@ -108,8 +108,14 @@ async function runCell(notebook: Notebook, panel: NotebookPanel, idx: number): P
   if (last && now - last < EXECUTION_COOLDOWN_MS) return;
   pendingExecutions.set(cell.model.id, now);
 
-  // Scroll to cell
-  notebook.node.scrollTo({ top: cell.node.offsetTop, behavior: 'smooth' });
+  // Scroll cell to top of viewport using JupyterLab's API
+  // Using 'start' alignment to always position cell at top, with margin=0 for precise positioning
+  try {
+    await (notebook as any).scrollToItem(idx, 'start', 0);
+  } catch {
+    // Fallback
+    cell.node.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
   const prev = notebook.activeCellIndex;
   notebook.activeCellIndex = idx;
